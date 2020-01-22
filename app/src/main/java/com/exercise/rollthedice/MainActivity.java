@@ -1,9 +1,10 @@
 package com.exercise.rollthedice;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 
@@ -20,7 +21,12 @@ public class MainActivity extends AppCompatActivity {
         imageViewDice = findViewById(R.id.iamge_view_dice);
         randomNumberGenerator = new Random();
 
-        rollDice();
+        imageViewDice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rollDice();
+            }
+        });
     }
 
     private void rollDice() {
