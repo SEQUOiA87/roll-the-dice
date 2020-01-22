@@ -1,8 +1,10 @@
 package com.exercise.rollthedice;
 
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -13,6 +15,9 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     private ImageView imageViewDice;
     private Random randomNumberGenerator;
+    private ShakeDetector shakeDetector;
+    private SensorManager sensorManager;
+    private Sensor accelerometer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
         imageViewDice = findViewById(R.id.iamge_view_dice);
         randomNumberGenerator = new Random();
+        shakeDetector = new ShakeDetector();
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         imageViewDice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,6 +37,25 @@ public class MainActivity extends AppCompatActivity {
                 animateRollingDice();
             }
         });
+
+        shakeDetector.setOnShakeListener(new ShakeDetector.OnShakeListener() {
+            @Override
+            public void onShake(int count) {
+                animateRollingDice();
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        sensorManager.registerListener(shakeDetector, accelerometer,	SensorManager.SENSOR_DELAY_UI);
+    }
+
+    @Override
+    public void onPause() {
+        sensorManager.unregisterListener(shakeDetector);
+        super.onPause();
     }
 
     private void animateRollingDice() {
