@@ -1,6 +1,8 @@
 package com.exercise.rollthedice;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -24,9 +26,29 @@ public class MainActivity extends AppCompatActivity {
         imageViewDice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rollDice();
+                animateRollingDice();
             }
         });
+    }
+
+    private void animateRollingDice() {
+        final Handler handler = new Handler();
+
+        final Runnable animation = new Runnable() {
+            @Override
+            public void run() {
+                rollDice();
+                handler.postDelayed(this, 200);
+            }
+        };
+        handler.post(animation);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                handler.removeCallbacks(animation);
+            }
+        }, 3000);
     }
 
     private void rollDice() {
