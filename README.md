@@ -11,5 +11,6 @@ This is an Android programming exercise. The target is to create an app which ro
 
 ## Preview
 
-This is how it could look like after step 4:
-![Preview of roll-the-dice app](preview.gif "Preview of roll-the-dice app")
+This is how the functionality of step3 could look like:
+
+![Preview of roll-the-dice app](preview_step3.gif "Preview of roll-the-dice app")
