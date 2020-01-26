@@ -1,8 +1,8 @@
-# Roll the dice
+# Roll the Dice
 
 This is an Android programming exercise. The target is to create an app which rolls the dice whenever the smartphone gets shaken.
 
-## Steps to target
+## Steps to Target
 
 1. Roll the dice on each app start
 2. Roll the dice on each button click
