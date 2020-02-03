@@ -2,6 +2,14 @@
 
 This is an Android programming exercise. The target is to create an app which rolls the dice whenever the smartphone gets shaken.
 
+## Status
+
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/SEQUOiA87/roll-the-dice/Android%20CI/master)
+![Coveralls github branch](https://img.shields.io/coveralls/github/SEQUOiA87/roll-the-dice/master)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/SEQUOiA87/roll-the-dice/master)
+![GitHub issues](https://img.shields.io/github/issues-raw/SEQUOiA87/roll-the-dice)
+![GitHub top language](https://img.shields.io/github/languages/top/SEQUOiA87/roll-the-dice)
+
 ## Steps to Target
 
 1. Roll the dice on each app start
