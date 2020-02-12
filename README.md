@@ -4,8 +4,8 @@ This is an Android programming exercise. The target is to create an app which ro
 
 ## Status
 
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/SEQUOiA87/roll-the-dice/Android%20CI/master)
-![Coveralls github branch](https://img.shields.io/coveralls/github/SEQUOiA87/roll-the-dice/master)
+![Android CI](https://github.com/SEQUOiA87/roll-the-dice/workflows/Android%20CI/badge.svg?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/SEQUOiA87/roll-the-dice/badge.svg?branch=master)](https://coveralls.io/github/SEQUOiA87/roll-the-dice?branch=master)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/SEQUOiA87/roll-the-dice/master)
 ![GitHub issues](https://img.shields.io/github/issues-raw/SEQUOiA87/roll-the-dice)
 ![GitHub top language](https://img.shields.io/github/languages/top/SEQUOiA87/roll-the-dice)
