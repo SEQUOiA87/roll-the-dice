@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+    private DiceRoller diceRoller;
     private ImageView imageViewDice;
     private Random randomNumberGenerator;
     private ShakeDetector shakeDetector;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageViewDice = findViewById(R.id.iamge_view_dice);
         randomNumberGenerator = new Random();
+        diceRoller = new DiceRoller();
         shakeDetector = new ShakeDetector();
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -64,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
         final Runnable animation = new Runnable() {
             @Override
             public void run() {
-                rollDice();
+                int randomNumber = randomNumberGenerator.nextInt(6) + 1;
+                diceRoller.rollDice(randomNumber, imageViewDice);
                 handler.postDelayed(this, 200);
             }
         };
@@ -76,32 +79,5 @@ public class MainActivity extends AppCompatActivity {
                 handler.removeCallbacks(animation);
             }
         }, 3000);
-    }
-
-    private void rollDice() {
-        int randomNumber = randomNumberGenerator.nextInt(6) + 1;
-
-        switch (randomNumber) {
-            case 1:
-                imageViewDice.setImageResource(R.drawable.dice1);
-                break;
-            case 2:
-                imageViewDice.setImageResource(R.drawable.dice2);
-                break;
-            case 3:
-                imageViewDice.setImageResource(R.drawable.dice3);
-                break;
-            case 4:
-                imageViewDice.setImageResource(R.drawable.dice4);
-                break;
-            case 5:
-                imageViewDice.setImageResource(R.drawable.dice5);
-                break;
-            case 6:
-                imageViewDice.setImageResource(R.drawable.dice6);
-                break;
-            default:
-                break;
-        }
     }
 }

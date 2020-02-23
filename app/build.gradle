@@ -1,3 +1,8 @@
+plugins {
+    id 'jacoco'
+    id 'com.github.kt3k.coveralls' version '2.8.4'
+}
+
 apply plugin: 'com.android.application'
 
 android {
@@ -9,10 +14,46 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    buildTypes {
+        debug {
+            // only needed if we have "AndroidTest"-type tests (a.k.a. instrumented tests)
+//            testCoverageEnabled true
+        }
+    }
+}
+
+coveralls {
+    jacocoReportPath 'build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml'
+}
+
+task jacocoTestReport(type: JacocoReport, group: 'verification', dependsOn: [
+        'testDebugUnitTest',
+//        'createDebugCoverageReport'
+]) {
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    // The lines below make sure we can report against our Android sources and exclude some unwanted stuff.
+    def fileFilter = [
+            '**/*Activity*.class', // exclude Activity classes since they should not contain testable code
+            '**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', // exclude generated stuff
+    ]
+    afterEvaluate {
+        def debugTree = fileTree(dir: compileDebugJavaWithJavac.destinationDir, excludes: fileFilter)
+        classDirectories = files(debugTree)
+    }
+    sourceDirectories = files(android.sourceSets.main.java.srcDirs)
+    executionData = fileTree(dir: project.buildDir, includes: ['**/*.exec', '**/*.ec'])
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.13'
+    testImplementation 'org.mockito:mockito-core:3.3.0'
 }
