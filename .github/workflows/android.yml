@@ -8,14 +8,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Check out repository
     - uses: actions/checkout@v1
-    - name: set up JDK 1.8
+    - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Run JaCoCo
+      run: ./gradlew jacocoTestReport
     - name: Add coverage to Coveralls
-      run: ./gradlew jacocoTestReport coveralls
+      run: ./gradlew coveralls
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
