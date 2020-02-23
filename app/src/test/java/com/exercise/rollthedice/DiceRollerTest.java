@@ -1,14 +1,15 @@
 package com.exercise.rollthedice;
 
-import android.media.Image;
 import android.widget.ImageView;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.anyInt;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 
 public class DiceRollerTest
 {
